@@ -1,7 +1,6 @@
 # Task Management Frontend
 
 Task Management Client is the frontend application for the Task Management Server.
-It allows users to interact with the backend to manage tasks through a user-friendly interface.
 
 ## Tech Stack
 
