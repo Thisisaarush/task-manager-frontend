@@ -8,10 +8,27 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAdd }) => {
   const [description, setDescription] = useState<string>("")
   const [error, setError] = useState<string>("")
 
+  const validateDescription = (desc: string): string => {
+    if (!desc) {
+      return "Description is required"
+    }
+    if (desc.length < 5) {
+      return "Description must be at least 5 characters long"
+    }
+    if (desc.length > 100) {
+      return "Description must be less than 100 characters long"
+    }
+    if (/[^a-zA-Z0-9 ]/g.test(desc)) {
+      return "Description contains invalid characters"
+    }
+    return ""
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!description) {
-      setError("Description is required")
+    const validationError = validateDescription(description)
+    if (validationError) {
+      setError(validationError)
       return
     }
     onAdd(description)
